@@ -1,5 +1,5 @@
 import { Task } from '../../entities/task';
 
-export interface CreateTask{
-  execute: (taskData: Omit<Task, 'id'>) => Task
+export interface ICreateTask{
+  execute: (taskData: unknown) => Promise<Task>
 }

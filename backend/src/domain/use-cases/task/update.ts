@@ -1,5 +1,5 @@
 import { Task } from '../../entities/task';
 
-export interface UpdateTask{
-  execute: (taskData: Task) => Task
+export interface IUpdateTask{
+  execute: (id: unknown, taskData: unknown) => Promise<Task>
 }

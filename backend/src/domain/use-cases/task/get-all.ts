@@ -1,5 +1,5 @@
 import { Task } from '../../entities/task';
 
-export interface GetAllTasks{
+export interface IGetAllTasks{
   execute: () => Promise<Task[]>
 }

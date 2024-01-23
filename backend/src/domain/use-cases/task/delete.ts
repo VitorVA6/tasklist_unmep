@@ -1,3 +1,3 @@
-export interface DeleteTask{
-  execute: (id: string) => void
+export interface IDeleteTask{
+  execute: (id: unknown) => Promise<void>
 }
