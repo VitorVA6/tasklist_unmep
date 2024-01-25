@@ -5,9 +5,9 @@ export enum status {
 }
 
 export interface Task {
-  id: string,
+  id?: string,
   title: string,
   description: string,
-  data: Date,
+  date: Date,
   status: status
 }

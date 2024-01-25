@@ -1,6 +1,6 @@
-import { Task } from "../../../domain/entities/task";
-import { IGetAllTasks } from "../../../domain/use-cases/task/get-all";
-import { TaskRepository } from "../../contracts/repositories/task-repository";
+import { Task } from "../../domain/entities/task"; 
+import { IGetAllTasks } from "../../domain/use-cases/get-tasks"; 
+import { TaskRepository } from "../contracts/repositories/task-repository"; 
 
 export class GetAllTasks implements IGetAllTasks{
   constructor(

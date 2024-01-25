@@ -1,11 +1,11 @@
-import { IDeleteTask } from "../../../domain/use-cases/task/delete";
-import { TaskRepository } from "../../contracts/repositories/task-repository";
-import { IdValidator } from "../../contracts/utils/id-validator";
+import { IDeleteTask } from "../../domain/use-cases/delete-task"; 
+import { TaskRepository } from "../contracts/repositories/task-repository"; 
+import { DataValidator } from "../contracts/data-validator";
 
 export class DeleteTask implements IDeleteTask{
   constructor(
     private readonly taskRepository: TaskRepository,
-    private readonly idValidator: IdValidator,
+    private readonly idValidator: DataValidator<string>,
   ){}
 
   async execute(id: unknown): Promise<void>{
