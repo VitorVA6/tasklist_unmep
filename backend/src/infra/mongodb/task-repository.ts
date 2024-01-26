@@ -9,7 +9,11 @@ export class MongoTaskRepository implements TaskRepository{
   }
 
   async update(task: Task): Promise<Task | null>{
-    const updatedTask = await TaskModel.findOneAndUpdate({_id: task.id}, task);
+    const updatedTask = await TaskModel.findOneAndUpdate(
+      {_id: task.id},
+      task,
+      {new: true}
+    );
     return updatedTask;
   }
 

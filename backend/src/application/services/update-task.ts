@@ -17,7 +17,7 @@ export class UpdateTask implements IUpdateTask{
       id: idValidated,
       ...task
     });
-    if(!updatedTask) throw new Error('Erro na atualização');
+    if(!updatedTask) throw new Error('Erro na atualização da tarefa');
     return updatedTask;
   }
 }

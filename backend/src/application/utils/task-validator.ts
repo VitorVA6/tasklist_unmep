@@ -46,6 +46,6 @@ export class TaskValidator implements DataValidator<Omit<Task, "id">>{
       };
       return validatedTask;
     }
-    throw new Error('Campos inválidos na tarefa');
+    throw new Error('Campos ausentes na tarefa');
   }
 }
