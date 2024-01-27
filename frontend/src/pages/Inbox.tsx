@@ -2,7 +2,7 @@ import TaskList from "../components/TaskList"
 import { Task } from "../types"
 import { status } from "../types"
 
-function Home() {
+function Inbox() {
   const tasks: Task[] = [
     {
       id: '1',
@@ -35,11 +35,13 @@ function Home() {
   ] 
 
   return (
-    <div>
-      <h1>Todas as tarefas</h1>
-      <TaskList tasks={tasks}/>
+    <div className="grid grid-cols-5 w-full text-black/80 px-6">
+      <div className=" col-span-3 w-full border-r border-gray-100">
+        <h1 className="text-[22px] font-medium py-5">Inbox</h1>
+        <TaskList tasks={tasks}/>
+      </div>
     </div>
   )
 }
 
-export default Home
+export default Inbox;
