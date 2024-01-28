@@ -1,16 +1,24 @@
 import { Task } from "../types"
+import TaskContainer from "./TaskContainer"
 
 interface props {
-  tasks: Task[]
+  tasks: Task[] | undefined,
+  selected: string | null,
+  setSelected: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-function TaskList({ tasks }: props) {
+function TaskList({ tasks, selected, setSelected }: props) {
   return (
-    <div>
+    <div className="py-4">
       {
-        tasks.map(el => (<div>
-          {el.title}
-        </div>))
+        tasks?.map(el => (
+          <TaskContainer
+            key={el.id}
+            task={el}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        ))
       }
     </div>
   )

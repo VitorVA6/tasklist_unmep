@@ -19,7 +19,7 @@ const TaskSchema = new Schema({
     type: String,
     enum: Object.values(status),
     required: true
-  },
+  }
 });
 
 export default mongoose.model('Task', TaskSchema);

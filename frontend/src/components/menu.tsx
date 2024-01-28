@@ -13,7 +13,7 @@ function Menu() {
   }
   return (
     <nav className="w-[360px] px-3 py-4 border-r h-screen">
-      <div className="flex items-center gap-2 text-lg font-medium text-blue-500 px-3 pt-2 pb-5 border-b border-gray-100">
+      <div className="flex items-center gap-2 text-xl font-medium text-blue-500 px-3 pt-2 pb-5 border-b border-gray-100">
         <IoMdCheckmarkCircleOutline className="text-blue-500 w-7 h-7"/>
         UnMEP Tasks
       </div>
