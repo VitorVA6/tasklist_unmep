@@ -2,7 +2,6 @@ import { IoTodayOutline, IoCheckboxOutline  } from "react-icons/io5";
 import { BsCalendar4Week } from "react-icons/bs";
 import { GoInbox } from "react-icons/go";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { CiSearch } from "react-icons/ci";
 import { IoIosAddCircle } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -29,10 +28,6 @@ function Menu() {
         >
           <IoIosAddCircle className="w-7 h-7 -ml-1.5"/>
           Nova tarefa
-        </div>
-        <div className='cursor-pointer px-3 py-2 rounded-md flex items-center gap-2 hover:bg-gray-50'>
-          <CiSearch className="text-gray-500 w-6 h-6 -ml-1"/>
-          Buscar
         </div>
         <Link
           to="/today" 
@@ -61,7 +56,7 @@ function Menu() {
         className={`px-3 py-2 rounded-md flex items-center gap-2 mt-4 ${classManager('/completed')?'bg-blue-50':'hover:bg-gray-50'}`}
       >
         <IoCheckboxOutline  className="text-gray-500 w-5 h-5"/>
-        Completas
+        Concluídas
       </Link>
     </nav>
   )

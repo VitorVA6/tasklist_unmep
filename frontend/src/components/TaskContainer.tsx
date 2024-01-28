@@ -21,9 +21,27 @@ function TaskContainer({task, selected, setSelected, url}: props){
   const handleCheck = () => {
     if(check === status.DONE){
       setCheck(status.DOING)
+      editTask.mutate({
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        date: task.date,
+        status: status.DOING
+      })
     }else {
       setCheck(status.DONE)
+      editTask.mutate({
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        date: task.date,
+        status: status.DONE
+      })
     }
+  }
+
+  const clickCheck = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation()
   }
 
   const classManager = (sel: string | null) => {
@@ -61,6 +79,14 @@ function TaskContainer({task, selected, setSelected, url}: props){
     }
   })
 
+  const editTask = useMutation({
+    mutationFn: taskervices.updateTask,
+    onSuccess: () => {
+      navigate(`/${url}`)
+      queryClient.invalidateQueries({ queryKey: ['tasks'] })
+    }
+  })
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation()
     event.preventDefault()
@@ -78,6 +104,7 @@ function TaskContainer({task, selected, setSelected, url}: props){
           size="small"
           checked={check === status.DONE}
           onChange={handleCheck}
+          onClick={clickCheck}
         />
         {task.title}
       </div>
