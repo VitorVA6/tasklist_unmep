@@ -1,9 +1,8 @@
 import TaskList from "../components/TaskList";
-import list from '../images/list.png'
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import taskServices from "../services/task";
-import EditContainer from "../components/EditContainer";
+import { Outlet } from "react-router-dom";
 
 function Inbox() {
   const [selected, setSelected] = useState<string | null>(null)
@@ -24,18 +23,7 @@ function Inbox() {
         <TaskList tasks={result.data} selected={selected} setSelected={setSelected}/>
       </div>
       <div className="col-span-2">
-        {
-          selected === null ?
-          <div className="flex flex-col items-center justify-center w-full h-full gap-10">
-            <img
-              src={list}
-              alt="lista de tarefas"
-              className="w-32 h-32 -mt-20"
-            />
-            <p className="text-gray-400">Clique no tarefa para vizualizar e editar os detalhes</p>
-          </div> :
-          <EditContainer/>
-        }
+        <Outlet/>
       </div>
     </div>
   )

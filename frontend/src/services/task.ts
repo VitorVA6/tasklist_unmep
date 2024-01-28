@@ -8,7 +8,13 @@ const getAll = async (): Promise<Task[]> => {
   return response.data
 }
 
+const getTaskById = async (id: string): Promise<Task> => {
+  const response = await axios.get<Task>(`${baseUrl}/${id}`)
+  return response.data
+}
+
 export default {
-  getAll
+  getAll,
+  getTaskById
 }
 

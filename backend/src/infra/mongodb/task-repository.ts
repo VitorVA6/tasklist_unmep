@@ -45,4 +45,16 @@ export class MongoTaskRepository implements TaskRepository{
     }));
     return tasksFormated;
   }
+
+  async findById(id: string): Promise<Task | null>{
+    const task = await TaskModel.findOne({_id: id});
+    if(!task) return null;
+    return {
+      id: task._id.toString(),
+      title: task.title,
+      date: task.date,
+      status: task.status,
+      description: task.description
+    };
+  }
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Task } from "../types";
 import Checkbox from '@mui/material/Checkbox';
 
@@ -19,7 +20,8 @@ const classManager = (sel: string | null) => {
   }
 }
   return (
-    <div
+    <Link
+      to={`/inbox/${task.id}`}
       className={`px-3 py-1 rounded-md flex justify-between items-center ${classManager(selected)}`}
       onClick={() => setSelected(task.id)}
     >
@@ -28,7 +30,7 @@ const classManager = (sel: string | null) => {
         {task.title}
       </div>
       <button className="text-xs text-blue-500">Today</button>
-    </div>
+    </Link>
   )
 }
 
