@@ -13,8 +13,25 @@ const getTaskById = async (id: string): Promise<Task> => {
   return response.data
 }
 
+const updateTask = async (task: Task): Promise<Task> => {
+  const response = await axios.put<Task>(`${baseUrl}/${task.id}`, task)
+  return response.data
+}
+
+const deleteTask = async (id: string): Promise<void> => {
+  await axios.delete(`${baseUrl}/${id}`)
+}
+
+const createTask = async (task: Omit<Task, 'id'>): Promise<Task> => {
+  const response = await axios.post<Task>(`${baseUrl}`, task)
+  return response.data
+}
+
 export default {
   getAll,
-  getTaskById
+  getTaskById,
+  updateTask,
+  deleteTask,
+  createTask
 }
 

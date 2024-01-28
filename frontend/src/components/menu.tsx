@@ -3,21 +3,33 @@ import { BsCalendar4Week } from "react-icons/bs";
 import { GoInbox } from "react-icons/go";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
+import { IoIosAddCircle } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import CreateTask from "./CreateTask";
 
 function Menu() {
   const location = useLocation()
+  const [showModal, setModal] = useState(false)
 
   const classManager = (loc: string): boolean => {
     return loc === location.pathname 
   }
   return (
     <nav className="w-[360px] px-3 py-4 border-r h-screen">
+      {showModal && <CreateTask setModal={setModal}/>}
       <div className="flex items-center gap-2 text-xl font-medium text-blue-500 px-3 pt-2 pb-5 border-b border-gray-100">
         <IoMdCheckmarkCircleOutline className="text-blue-500 w-7 h-7"/>
         UnMEP Tasks
       </div>
-      <div className="pt-4 pb-6 border-b  border-gray-100">
+      <div className="pt-4 pb-6 border-b border-gray-100">
+        <div
+          className='text-blue-500 font-medium cursor-pointer px-3 py-2 rounded-md flex items-center gap-2 hover:bg-gray-50'
+          onClick={() => setModal(true)}
+        >
+          <IoIosAddCircle className="w-7 h-7 -ml-1.5"/>
+          Nova tarefa
+        </div>
         <div className='cursor-pointer px-3 py-2 rounded-md flex items-center gap-2 hover:bg-gray-50'>
           <CiSearch className="text-gray-500 w-6 h-6 -ml-1"/>
           Buscar

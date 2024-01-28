@@ -9,7 +9,6 @@ export class GetTaskController{
   async handle(req: Request, res: Response){
     try{
       const id = req.params.id;
-      console.log(id);
       const task = await this.getTask.execute(id);
       res.json(task).end();
     }catch(error){
