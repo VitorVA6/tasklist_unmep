@@ -4,10 +4,11 @@ import TaskContainer from "./TaskContainer"
 interface props {
   tasks: Task[] | undefined,
   selected: string | null,
-  setSelected: React.Dispatch<React.SetStateAction<string | null>>
+  setSelected: React.Dispatch<React.SetStateAction<string | null>>,
+  url: string
 }
 
-function TaskList({ tasks, selected, setSelected }: props) {
+function TaskList({ tasks, selected, setSelected, url }: props) {
   return (
     <div className="py-4">
       {
@@ -17,6 +18,7 @@ function TaskList({ tasks, selected, setSelected }: props) {
             task={el}
             selected={selected}
             setSelected={setSelected}
+            url={url}
           />
         ))
       }

@@ -34,8 +34,10 @@ export class MongoTaskRepository implements TaskRepository{
     await TaskModel.findOneAndDelete({_id: id});
   }
 
-  async find(): Promise<Task[]>{
-    const tasks = await TaskModel.find({});
+  async find(): Promise<Task[]>{    
+    const tasks = await TaskModel
+      .find({})
+      .sort({date: 'asc'});
     const tasksFormated = tasks.map(el => ({
       id: el._id.toString(),
       title: el.title,

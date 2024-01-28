@@ -1,19 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Task } from "../types";
+import { Task, status } from "../types";
 import Checkbox from '@mui/material/Checkbox';
 import { GoTrash } from "react-icons/go";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import taskervices from "../services/task";
+import { useState } from "react";
 
 interface props {
   task: Task,
   selected: string | null,
-  setSelected: React.Dispatch<React.SetStateAction<string | null>>
+  setSelected: React.Dispatch<React.SetStateAction<string | null>>,
+  url: string
 }
 
-function TaskContainer({task, selected, setSelected}: props){
+function TaskContainer({task, selected, setSelected, url}: props){
   const navigate = useNavigate()
   const queryClient = useQueryClient()
+  const [check, setCheck] = useState<status>(task.status)
+
+  const handleCheck = () => {
+    if(check === status.DONE){
+      setCheck(status.DOING)
+    }else {
+      setCheck(status.DONE)
+    }
+  }
 
   const classManager = (sel: string | null) => {
     switch (sel){
@@ -45,7 +56,7 @@ function TaskContainer({task, selected, setSelected}: props){
   const deleteTask = useMutation({
     mutationFn: taskervices.deleteTask,
     onSuccess: () => {
-      navigate('/inbox')
+      navigate(`/${url}`)
       queryClient.invalidateQueries({ queryKey: ['tasks'] })
     }
   })
@@ -58,12 +69,16 @@ function TaskContainer({task, selected, setSelected}: props){
 
   return (
     <Link
-      to={`/inbox/${task.id}`}
+      to={`/${url}/${task.id}`}
       className={`px-3 py-1 rounded-md flex justify-between items-center ${classManager(selected)}`}
       onClick={() => setSelected(task.id)}
     >
       <div className="flex items-center gap-1">
-        <Checkbox size="small"/>
+        <Checkbox
+          size="small"
+          checked={check === status.DONE}
+          onChange={handleCheck}
+        />
         {task.title}
       </div>
       <div className="flex items-center gap-3">

@@ -19,9 +19,18 @@ function App() {
               <Route index element={<NoEdit/>}/>
               <Route path="/inbox/:id" element={<EditContainer/>}/>
             </Route>
-            <Route path="/today" element={<Today/>}/>
-            <Route path="/week" element={<Week/>}/>
-            <Route path="/completed" element={<Completed/>}/>
+            <Route path="/today" element={<Today/>}>
+              <Route index element={<NoEdit/>}/>
+              <Route path="/today/:id" element={<EditContainer/>}/>
+            </Route>
+            <Route path="/week" element={<Week/>}>
+              <Route index element={<NoEdit/>}/>
+              <Route path="/week/:id" element={<EditContainer/>}/>
+            </Route>
+            <Route path="/completed" element={<Completed/>}>
+              <Route index element={<NoEdit/>}/>
+              <Route path="/completed/:id" element={<EditContainer/>}/>
+            </Route>
           </Route>
         </Routes>
       </Router>

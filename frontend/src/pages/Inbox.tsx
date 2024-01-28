@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import taskServices from "../services/task";
 import { Outlet } from "react-router-dom";
+import { status } from "../types";
 
 function Inbox() {
   const [selected, setSelected] = useState<string | null>(null)
@@ -20,7 +21,7 @@ function Inbox() {
     <div className="grid grid-cols-5 w-full text-black/80">
       <div className=" col-span-3 w-full border-r border-gray-100 px-6">
         <h1 className="text-[22px] font-medium py-5">Inbox</h1>
-        <TaskList tasks={result.data} selected={selected} setSelected={setSelected}/>
+        <TaskList tasks={result.data?.filter(el => el.status !== status.DONE)} selected={selected} setSelected={setSelected} url="inbox"/>
       </div>
       <div className="col-span-2">
         <Outlet/>
