@@ -64,6 +64,7 @@ function CreateTask({setModal}: props) {
           label="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
         />
         <TextField
           label="Descrição"
@@ -71,6 +72,7 @@ function CreateTask({setModal}: props) {
           rows={4}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
         />
         <Button type="submit">Enviar</Button>
       </form>
